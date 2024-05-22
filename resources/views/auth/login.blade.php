@@ -47,7 +47,7 @@
                             <div class="d-flex justify-content-center py-4">
                                 <a href={{ url('') }} class="logo d-flex align-items-center w-auto">
 
-                                    <span class="d-none d-lg-block">Control y Gestión Profesores</span>
+                                    <span class="d-none d-lg-block">Control de Cursos</span>
                                 </a>
                             </div><!-- End Logo -->
 
