@@ -59,28 +59,25 @@
                                         <h5 class="card-title text-center pb-0 fs-4">Login</h5>
                                         <p class="text-center small">Introduzca correo y contraseña para entrar</p>
                                     </div>
-
-                                    <form class="row g-3 needs-validation" novalidate>
-
+                                    @include('auth._message')
+                                    <form class="row g-3 " action="" method="post">
+                                        @csrf
                                         <div class="col-12">
                                             <label for="youremail" class="form-label">Correo</label>
                                             <input type="text" name="email" class="form-control" id="youremail"
                                                 required>
-                                            <div class="invalid-feedback">Por favor introduzca correo.</div>
-
                                         </div>
 
                                         <div class="col-12">
                                             <label for="yourPassword" class="form-label">Contraseña</label>
                                             <input type="password" name="password" class="form-control"
                                                 id="yourPassword" required>
-                                            <div class="invalid-feedback">Por favor introduzca contraseña!</div>
                                         </div>
 
                                         <div class="col-12">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="remember"
-                                                    value="true" id="rememberMe">
+                                                    id="rememberMe">
                                                 <label class="form-check-label" for="rememberMe">Recordarme</label>
                                             </div>
                                         </div>
