@@ -127,12 +127,7 @@
           </div>
         </div><!-- End Left side columns -->
 
-        <!-- Right side columns -->
-        <div class="col-lg-4">
-
-
-
-      </div>
+       
     </section>
 
 
