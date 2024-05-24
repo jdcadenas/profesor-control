@@ -16,14 +16,9 @@ Route::group(['middleware' => 'userAdmin'], function () {
     Route::get('/panel/role/add', [RolController::class, 'add'])->name('role.add');
     Route::post('/panel/role/add', [RolController::class, 'insert']);
     Route::get('/panel/role/edit/{id}', [RolController::class, 'edit'])->name('role.edit');
-    Route::post('/panel/role/{id}', [RolController::class, 'update']);
-    Route::get('/panel/role/{id}', [RolController::class, 'delete'])->name('role.delete');
+    Route::put('/panel/role/{id}', [RolController::class, 'update'])->name('role.update');;
+    Route::delete('/panel/role/{role}', [RolController::class, 'delete'])->name('role.delete');
 
 
 });
 
-
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });

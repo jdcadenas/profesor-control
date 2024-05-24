@@ -11,6 +11,18 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        @if (session('success'))
+                            <div class="alert alert-success" role="alert">{{ session('success') }}</div>
+                        @endif
                         <div class="row">
                             <div class="col-lg-6 mt-2 mb-3">
                                 <h5 class="card-title">Listado de Roles</h5>
@@ -25,48 +37,36 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Position</th>
-                                    <th scope="col">Age</th>
-                                    <th scope="col">Start Date</th>
+                                    <th scope="col">Nombre</th>
+
+                                    <th width="250px">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Brandon Jacob</td>
-                                    <td>Designer</td>
-                                    <td>28</td>
-                                    <td>2016-05-25</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Bridie Kessler</td>
-                                    <td>Developer</td>
-                                    <td>35</td>
-                                    <td>2014-12-05</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Ashleigh Langosh</td>
-                                    <td>Finance</td>
-                                    <td>45</td>
-                                    <td>2011-08-12</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td>Angus Grady</td>
-                                    <td>HR</td>
-                                    <td>34</td>
-                                    <td>2012-06-11</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">5</th>
-                                    <td>Raheem Lehner</td>
-                                    <td>Dynamic Division Officer</td>
-                                    <td>47</td>
-                                    <td>2011-04-19</td>
-                                </tr>
+                                @forelse ($roles as $rol)
+                                    <tr>
+                                        <th scope="row">{{ $rol->id }}</th>
+                                        <td>{{ $rol->name }}</td>
+
+                                        <td>
+                                            <form action="{{ route('role.delete', $rol->id) }}" method="POST">
+                                                {{-- <a class="btn btn-info btn-sm" href="{{ route('rol.show', $rol->id) }}"><i
+                                                        class="fa-solid fa-list"></i> Show</a> --}}
+                                                <a class="btn btn-primary btn-sm"
+                                                    href="{{ route('role.edit', $rol->id) }}"><i
+                                                        class="fa-solid fa-pen-to-square"></i> Editar</a>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm"><i
+                                                        class="fa-solid fa-trash"></i> Eliminar</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="4">There are no data.</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
