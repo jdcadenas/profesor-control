@@ -16,15 +16,15 @@
               </a>
               <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                   <li>
-                      <a href="{{ url('panel/user') }}">
+                      <a href="{{ route('users.index') }}">
                           <i class="bi bi-circle"></i><span>Listado</span>
                       </a>
                   </li>
-
+                  
               </ul>
               <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                   <li>
-                      <a href="{{ url('panel/role') }}">
+                      <a href="{{ route('roles.index') }}">
                           <i class="bi bi-circle"></i><span>Rol</span>
                       </a>
                   </li>
