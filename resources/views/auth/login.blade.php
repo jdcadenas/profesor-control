@@ -60,18 +60,32 @@
                                         <p class="text-center small">Introduzca correo y contraseña para entrar</p>
                                     </div>
                                     @include('auth._message')
-                                    <form class="row g-3 " action="" method="post">
+                                    <form class="row g-3 " action="{{ route('login') }}" method="POST">
                                         @csrf
                                         <div class="col-12">
                                             <label for="youremail" class="form-label">Correo</label>
-                                            <input type="text" name="email" class="form-control" id="youremail"
-                                                required>
+                                            <input id="email" type="email"
+                                                class="form-control @error('email') is-invalid @enderror" id="youremail"
+                                                {{ old('email') }} required autocomplete="email" autofocus />
+
+                                            @error('email')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
 
                                         <div class="col-12">
                                             <label for="yourPassword" class="form-label">Contraseña</label>
-                                            <input type="password" name="password" class="form-control"
-                                                id="yourPassword" required>
+                                            <input id="password" type="password"
+                                                class="form-control @error('password') is-invalid @enderror"
+                                                name="password" required autocomplete="current-password">
+
+                                            @error('password')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
 
                                         <div class="col-12">
