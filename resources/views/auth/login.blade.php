@@ -60,11 +60,11 @@
                                         <p class="text-center small">Introduzca correo y contraseña para entrar</p>
                                     </div>
                                     @include('auth._message')
-                                    <form class="row g-3 " action="{{ route('login') }}" method="POST">
+                                    <form class="row g-3 " action="{{ route('auth_login') }}" method="POST">
                                         @csrf
                                         <div class="col-12">
                                             <label for="youremail" class="form-label">Correo</label>
-                                            <input id="email" type="email"
+                                            <input id="email" type="email" name="email"
                                                 class="form-control @error('email') is-invalid @enderror" id="youremail"
                                                 {{ old('email') }} required autocomplete="email" autofocus />
 
@@ -96,7 +96,7 @@
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <button class="btn btn-primary w-100" type="submit">Ingresar</button>
+                                            <button class="btn btn-primary w-100" type="submit" >Ingresar</button>
                                         </div>
                                         <div class="col-12">
                                             <p class="small mb-0">¿ No tiene cuenta ? <a

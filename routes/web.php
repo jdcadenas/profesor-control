@@ -3,12 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
-//use App\Http\Controllers\RolController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 
 Route::get('/', [AuthController::class, 'login'])->name('login');
-Route::post('/', [AuthController::class, 'auth_login']);
+Route::post('/', [AuthController::class, 'auth_login'])->name('auth_login');
 
 
 // Auth::routes();
