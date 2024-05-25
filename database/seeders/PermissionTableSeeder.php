@@ -13,11 +13,17 @@ class PermissionTableSeeder extends Seeder
      */
     public function run(): void
     {
+        // Reset cached roles and permissions
+        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
         $permissions = [
            'role-list',
            'role-create',
            'role-edit',
            'role-delete',
+           'user-list',
+           'user-create',
+           'user-edit',
+           'user-delete',
           
         ];
         

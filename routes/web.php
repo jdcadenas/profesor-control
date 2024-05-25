@@ -7,11 +7,11 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 
 Route::get('/', [AuthController::class, 'login'])->name('login');
-Route::post('/', [AuthController::class, 'auth_login'])->name('auth_login');
 
 
-// Auth::routes();
+Auth::routes();
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'userAdmin'], function () {
 
@@ -21,4 +21,6 @@ Route::group(['middleware' => 'userAdmin'], function () {
     Route::resource('users', UserController::class);
 
 });
+
+
 

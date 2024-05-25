@@ -17,7 +17,7 @@
               <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                   <li>
                       <a href="{{ route('users.index') }}">
-                          <i class="bi bi-circle"></i><span>Listado</span>
+                          <i class="bi bi-circle"></i><span>Listado de Usuarios</span>
                       </a>
                   </li>
                   
@@ -25,7 +25,7 @@
               <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                   <li>
                       <a href="{{ route('roles.index') }}">
-                          <i class="bi bi-circle"></i><span>Rol</span>
+                          <i class="bi bi-circle"></i><span>Listado de Roles</span>
                       </a>
                   </li>
 

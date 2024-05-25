@@ -131,7 +131,7 @@ class RoleController extends Controller
         $role = Role::create(['name' => $request->input('name')]);
         $role->syncPermissions($permissionsID);
     
-        return redirect()->route('panel.roles.index')
+        return redirect()->route('roles.index')
                         ->with('success','Role created successfully');
     }
     /**
@@ -204,7 +204,7 @@ class RoleController extends Controller
     public function destroy($id): RedirectResponse
     {
         DB::table("roles")->where('id',$id)->delete();
-        return redirect()->route('panel.roles.index')
+        return redirect()->route('roles.index')
                         ->with('success','Role deleted successfully');
     }
 }
