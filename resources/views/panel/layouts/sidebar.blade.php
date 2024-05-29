@@ -28,8 +28,14 @@
                           <i class="bi bi-circle"></i><span>Listado de Roles</span>
                       </a>
                   </li>
-
               </ul>
+              <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="{{ route('permissions.index') }}">
+                        <i class="bi bi-circle"></i><span>Listado de Permisos</span>
+                    </a>
+                </li>
+            </ul>
           </li><!-- End Components Nav -->
 
 

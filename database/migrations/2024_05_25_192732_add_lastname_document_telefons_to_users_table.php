@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('document')->nullable();
             $table->string('Telefon')->nullable();
             $table->foreignIdFor(Faculty::class)->nullable()->cascadeOnDelete()->constrained();
-        $table->foreignIdFor(School::class)->nullable()->cascadeOnDelete()->constrained();
+            $table->foreignIdFor(School::class)->nullable()->cascadeOnDelete()->constrained();
         });
     }
 
