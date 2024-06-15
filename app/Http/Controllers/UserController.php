@@ -12,9 +12,22 @@ use Illuminate\Support\Arr;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Services\Moodle\UserService;
 
 class UserController extends Controller
 {
+
+    protected $UserService;
+
+    public function __construct() {
+        $this->UserService = app(UserService::class);
+    }
+
+    public function getusermoodle($email) {
+        $dataMoodle  = $this->UserService->getUseryEmail($email);
+        
+        return view('pages.list', compact('dataMoodle'));
+    }
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +38,11 @@ class UserController extends Controller
     {
         
         $data = User::latest()->paginate(5);
-        return view('panel.users.index',compact('data'))
+        $dataMoodle  = $this->UserService->getAll('%%');
+        
+        $dataMoodle = $dataMoodle["data"]['users'];
+        
+        return view('panel.users.index',compact('data', 'dataMoodle'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
     
@@ -136,5 +153,18 @@ class UserController extends Controller
         User::find($id)->delete();
         return redirect()->route('users.index')
                         ->with('success','User deleted successfully');
+    }
+
+     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function request(): View
+    {
+        //$user = User::find($id);
+        //return view('request',compact('user'));
+        return view('request');
     }
 }

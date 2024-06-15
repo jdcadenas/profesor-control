@@ -2,5 +2,6 @@
 
 return [
     App\Providers\AppServiceProvider::class,
-    RealRashid\SweetAlert\SweetAlertServiceProvider::class,                                  
+    App\Providers\MoodleServiceProvider::class,
+    RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 ];
