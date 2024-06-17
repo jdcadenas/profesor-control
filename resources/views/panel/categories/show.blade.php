@@ -18,13 +18,19 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Nombre:</strong>
-            {{ $category->name }}
+            {{ $category[0]['name'] }}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Correo:</strong>
-            {{ $category->email }}
+            <strong>Numero Id:</strong>
+            {{ $category[0]['idnumber'] }}
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Descripción:</strong>
+            {{ $category[0]['description'] }}
         </div>
     </div>
  

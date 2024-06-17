@@ -3,7 +3,7 @@
 
 namespace App\Services\Moodle;
 
-
+use Illuminate\Support\Facades\Http;
 class UserService extends BaseRestService {
 
     /**
@@ -52,25 +52,31 @@ class UserService extends BaseRestService {
         $this->params['criteria[0][value]'] = $email;
         // Call Moodle API function to get user data
         $userData = $this->service->get($this->url, $this->params);
-    
         // Extract relevant user data
-        if (isset($userData["data"])) {
-            return [
-                'id' => $userData["data"]['users'][0]["id"],
-                'username' => $userData["data"]['users'][0]['username'],
-                'firstname' => $userData['data']['users'][0]['firstname'],
-                'lastname' => $userData["data"]['users'][0]['lastname'],               
-                'fullname' => $userData["data"]['users'][0]['fullname'],
-                'email' => $userData["data"]['users'][0]['email'],
-                'department' => $userData["data"]['users'][0]['department'],
-                'suspended' => $userData["data"]['users'][0]['suspended'],
-                'confirmed' => $userData["data"]['users'][0]['confirmed'],
-                'profileimageurlsmall' => $userData["data"]['users'][0]['profileimageurlsmall'],
-                'profileimageurl' => $userData["data"]['users'][0]['profileimageurl'],
-            ];
+        if (isset($userData["data"]["users"])) {
+            return $userData["data"]["users"];
         }
+        return false;
+    }
+    
+    public function isUserValidate($username,$password)
+    {
+        
+        $url=env('MOODLE_REST_API_URL');
+        
+        $tokenfunction = $url."?service=moodle_mobile_app&username=". $username."&password=". $password;
+     
+//https://Sistema/login/token.php?service=moodle_mobile_app&username=usuariotest&password=password
+        $response = Http::get($tokenfunction);
 
-        return null;
+        dd($response);
+
+       
+        
+        if (isset($userData["data"]["users"])) {
+            return $userData["data"]["users"];
+        }
+        return false;
     }
     
 }

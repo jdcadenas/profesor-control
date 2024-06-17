@@ -52,12 +52,30 @@
                             </div><!-- End Logo -->
 
                             <div class="card w-full mb-3">
-                                <div class="card-header">{{ __('Solicitud de Registro de Profesor') }}</div>
+                                <div class="card-header">{{ __('Solicitud de Registro de Profesor Moodle') }}</div>
 
                                 <div class="card-body">
                                     <form method="POST" action="{{ route('register') }}">
                                         @csrf
+             {{ var_dump($userData[0]) }} 
+                                        <div class="row mb-3">
+                                            <label for="username"
+                                                class="col-md-4 col-form-label text-md-end">{{ __('UserName') }}</label>
 
+                                            <div class="col-md-8">
+                                                <input id="username" type="text"
+                                                    class="form-control @error('name') is-invalid @enderror"
+                                                    name="name"
+                                                    value="{{ old('username', $userData[0]['username']) }}" required
+                                                    autocomplete="username" autofocus>
+
+                                                @error('name')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
                                         <div class="row mb-3">
                                             <label for="name"
                                                 class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
@@ -65,8 +83,9 @@
                                             <div class="col-md-8">
                                                 <input id="name" type="text"
                                                     class="form-control @error('name') is-invalid @enderror"
-                                                    name="name" value="{{ old('name') }}" required
-                                                    autocomplete="name" autofocus>
+                                                    name="name"
+                                                    value="{{ old('name', $userData[0]['firstname']) }}" required
+                                                    autocomplete="name" >
 
                                                 @error('name')
                                                     <span class="invalid-feedback" role="alert">
@@ -77,23 +96,39 @@
                                         </div>
 
                                         <div class="row mb-3">
-                                            <label for="email"
-                                                class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                                            <label for="fullname"
+                                                class="col-md-4 col-form-label text-md-end">{{ __('Fullname Address') }}</label>
 
                                             <div class="col-md-8">
-                                                <input id="email" type="email"
-                                                    class="form-control @error('email') is-invalid @enderror"
-                                                    name="email" value="{{ old('email') }}" required
-                                                    autocomplete="email">
+                                                <input id="fullname" type="text"
+                                                    class="form-control @error('fullname') is-invalid @enderror"
+                                                    name="email" value="{{ old('fullname', $userData[0]['fullname']) }}" required
+                                                    autocomplete="fullname">
 
-                                                @error('email')
+                                                @error('fullname')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                 @enderror
                                             </div>
                                         </div>
+                                        <div class="row mb-3">
+                                            <label for="email"
+                                                class="col-md-4 col-form-label text-md-end">{{ __('email Address') }}</label>
 
+                                            <div class="col-md-8">
+                                                <input id="email" type="text"
+                                                    class="form-control @error('email') is-invalid @enderror"
+                                                    name="email" value="{{ old('email', $userData[0]['email']) }}" required
+                                                    autocomplete="email">
+
+                                                @error('fullname')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
                                         <div class="row mb-3">
                                             <label for="password"
                                                 class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>

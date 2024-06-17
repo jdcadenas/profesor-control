@@ -28,7 +28,7 @@ class CourseService extends BaseRestService
      * @param array $ids
      * @return CourseCollection
      */
-    public function getAll(array $ids = [])
+    public function getAllbyId(array $ids = [])
     {
         $this->params['wsfunction'] = 'core_course_get_courses';
         $this->params['options[ids][0]'] =  $ids;
@@ -36,10 +36,7 @@ class CourseService extends BaseRestService
         return $this->service->get($this->url, $this->params);
     }
 
-        $response = $this->sendRequest('core_course_get_courses', ['options' => ['ids' => $ids]]);
-
-        return $this->getCourseCollection($response);
-    }
+        
 
     /**
      * Get course by field

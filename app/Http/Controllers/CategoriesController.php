@@ -75,14 +75,7 @@ class CategoriesController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
+   
     /**
      * Display the specified resource.
      */
@@ -90,31 +83,40 @@ class CategoriesController extends Controller
     {
         $category  = $this->categoryService->getbyid($id);
         $category = $category["data"];
-        dd($category);
+       
         return view('panel.categories.show',compact( 'category'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit( $school)
+    public function edit( $id)
     {
+        $category  = $this->categoryService->getbyid($id);
+        
+        $category = $category["data"];
+        return view('panel.categories.edit',compact( 'category'));
         //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    // public function update(UpdateSchoolRequest $request, School $school)
-    // {
-    //     //
-    // }
+    public function update(Request $request,  $id)
+    {
+         
+
+        $category  = $this->categoryService->update($request,$id);
+        return redirect()->route('categories.index');
+
+    }
 
     // /**
     //  * Remove the specified resource from storage.
     //  */
-    // public function destroy(School $school)
-    // {
-    //     //
-    // }
+    public function destroy($id)
+    {
+        $category  = $this->categoryService->delete($id);
+        return redirect()->route('categories.index');
+    }
 }

@@ -22,10 +22,43 @@ class LoginController extends Controller
     public function login(Request $request)
     
     {
-        $this->validate($request, [
+        $validatedData = $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required|string',
         ]);
+
+
+        $userData= $this->UserService->isUserRegistered($validatedData['email']);
+
+        //dd($userData[0]["username"]);
+        //https://Sistema/login/token.php?service=moodle_mobile_app&username=usuariotest&password=password
+        //buscar si username  y password valida en moodle
+$usertoken= $this->UserService->isUserValidate($userData[0]["username"],$validatedData["password"]);
+
+
+
+        if (!empty($userData && $usertoken)) {
+
+            if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
+                $user = Auth::user();
+
+
+               // Successful login, redirect to intended destination
+                return redirect()->intended('home');
+            } else {
+                    // agregar usuario
+
+                    return redirect()->intended('home');
+
+            }
+            // User exists in Moodle, display existing user message and redirect to login
+            return redirect()->back()->with('message', 'El usuario ya está registrado en Moodle. Por favor, inicie sesión.');
+        } else {
+            // User does not exist in Moodle, return failed login message
+
+           //  Solicitar registro
+            
+        }
 
         if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
             $user = Auth::user();
