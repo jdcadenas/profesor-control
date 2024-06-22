@@ -4,6 +4,9 @@
 namespace App\Services\Moodle;
 
 use Illuminate\Support\Facades\Http;
+
+use function PHPUnit\Framework\isEmpty;
+
 class UserService extends BaseRestService {
 
     /**
@@ -51,30 +54,21 @@ class UserService extends BaseRestService {
         $this->params['criteria[0][key]'] = 'email';
         $this->params['criteria[0][value]'] = $email;
         // Call Moodle API function to get user data
-        $userData = $this->service->get($this->url, $this->params);
-        // Extract relevant user data
-        if (isset($userData["data"]["users"])) {
-            return $userData["data"]["users"];
-        }
-        return false;
+        return $this->service->get($this->url, $this->params);
+        
     }
     
     public function isUserValidate($username,$password)
     {
         
-        $url=env('MOODLE_REST_API_URL');
-        
-        $tokenfunction = $url."?service=moodle_mobile_app&username=". $username."&password=". $password;
-     
-//https://Sistema/login/token.php?service=moodle_mobile_app&username=usuariotest&password=password
-        $response = Http::get($tokenfunction);
+        $url = env('MOODLE_USER_URL');
 
-        dd($response);
-
+        $tokenfunction = "?service=moodle_mobile_app&username=". $username."&password=". $password;
+        $response = Http::get($url.$tokenfunction)->json();;
        
-        
-        if (isset($userData["data"]["users"])) {
-            return $userData["data"]["users"];
+        if (isset($response["token"])) {
+          
+            return $response["token"];
         }
         return false;
     }

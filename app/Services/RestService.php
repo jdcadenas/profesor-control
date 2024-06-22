@@ -68,11 +68,11 @@ class RestService
     {
         $client = new Client();
         try {
-            $data = json_decode($client->request(
+            $data = collect(json_decode($client->request(
                 $method,
                 $uri,
                 ["query" => $data]
-            )->getBody(), true);
+            )->getBody(), true));
 
             $response = [
                 'success' => true,
