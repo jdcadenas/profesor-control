@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Faculty;
 use App\Http\Requests\StoreFacultyRequest;
 use App\Http\Requests\UpdateFacultyRequest;
+use App\Models\School;
+use Illuminate\Http\Request;
 
 class FacultyController extends Controller
 {
@@ -62,5 +64,14 @@ class FacultyController extends Controller
     public function destroy(Faculty $faculty)
     {
         //
+    }
+
+    public function getSchoolsByFaculty(Request $request)
+    {
+        
+        
+        $facultyId = $request->input('faculty_id');
+        $schools = School::where('faculty_id', $facultyId)->get();
+        return response()->json(['schools' => $schools]);
     }
 }

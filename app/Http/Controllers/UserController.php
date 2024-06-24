@@ -164,8 +164,7 @@ class UserController extends Controller
      */
     public function request(): View
     {
-        //$user = User::find($id);
-        //return view('request',compact('user'));
-        return view('request');
+       
+        return view('request.userrequest');
     }
 }

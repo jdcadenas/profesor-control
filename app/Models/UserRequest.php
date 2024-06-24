@@ -4,30 +4,30 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class School extends Model
+class UserRequest extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'description',
+        'firstname',
+        'lastname',
+        'username',
+        'email',
+        'document',
+        'phone',
         'faculty_id', // Foreign key 
+        'school_id', // Foreign key 
+        
     ];
-
-    public function users(): HasMany
-    {
-        return $this->hasMany(User::class, 'school_id');
-    }
 
     public function faculty()
     {
         return $this->belongsTo(Faculty::class);
     }
 
-    public function userRequests()
+    public function school()
     {
-        return $this->hasMany(UserRequest::class);
+        return $this->belongsTo(School::class);
     }
 }

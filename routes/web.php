@@ -8,8 +8,7 @@ use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SchoolController;
-use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\UserRequestController;
 
 Route::get('/', [AuthController::class, 'login'])->name('login');
 
@@ -31,12 +30,18 @@ Route::group(['middleware' => ['userAdmin', 'deleteConfirmation']], function () 
 
 });
 Route::get('/categoriestree', [CategoriesController::class, 'treeindex']);
-//Route::get('/usermoodle/{email}',[UserController::class,'getusermoodle']);
-Route::get('/request', [UserController::class, 'request']);
+
+
+
+Route::post('/get-schools-by-faculty', [FacultyController::class, 'getSchoolsByFaculty'])->name('getSchoolsByFaculty');
+
+Route::get('/user-request', [UserRequestController::class, 'create'])->name('user-request.create');
+
+Route::post('/request-user', [UserRequestController::class, 'store'])->name('user-request.store');
 
 // Route::namespace('moodle')->group(function () {
 //     Route::get('/users', [UsersController::class, 'index'])->name('users-list');
 //     Route::get('/enrolled-users', [UsersController::class, 'enrolled'])->name('enrolled-users-list');
 //     Route::get('/courses', [CoursesController::class, 'index'])->name('courses-list');
-//    // Route::get('/categoriastree', [CategoriesController::class, 'index'])->name('categoria');
+//    Route::get('/categoriastree', [CategoriesController::class, 'index'])->name('categoria');
 // });

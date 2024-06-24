@@ -13,14 +13,16 @@ return new class extends Migration
     {
         Schema::create('user_requests', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('faculty_id')->constrained('faculties');
-            $table->foreignId('school_id')->constrained('schools');
+            
             $table->string('firstname');
             $table->string('lastname');
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('document')->unique();
             $table->string('phone');
+            $table->foreignId('faculty_id')->constrained('faculties');
+            $table->foreignId('school_id')->constrained('schools');
+            $table->boolean('status');           
             $table->timestamps();
             $table->softDeletes();
         });

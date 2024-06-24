@@ -100,7 +100,7 @@
                                         </div>
                                         <div class="col-12">
                                             <p class="small mb-0">¿ No tiene cuenta ? <a
-                                                    href="{{ route('register') }}">Solicitar cuenta</a></p>
+                                                    href="{{ route('user-request.create') }}">Solicitar cuenta</a></p>
                                         </div>
                                     </form>
 
