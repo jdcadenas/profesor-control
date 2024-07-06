@@ -13,12 +13,20 @@ class UserRequestConfirmationEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     */
-    public function __construct()
+    public $userRequest;
+
+    public function __construct($userRequest)
     {
-        //
+        $this->userRequest = $userRequest;
+    }
+
+    public function build()
+    {
+        return $this
+            ->to($this->userRequest->school->coordinator_email) // Replace with actual email
+            ->from('no-reply@your-app.com')
+            ->subject('Solicitud de usuario recibida')
+            ->markdown('emails.user-request-confirmation', ['userRequest' => $this->userRequest]);
     }
 
     /**

@@ -8,6 +8,7 @@ use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserRequestController;
 
 Route::get('/', [AuthController::class, 'login'])->name('login');
@@ -36,9 +37,10 @@ Route::get('/categoriestree', [CategoriesController::class, 'treeindex']);
 Route::post('/get-schools-by-faculty', [FacultyController::class, 'getSchoolsByFaculty'])->name('getSchoolsByFaculty');
 
 Route::get('/user-request', [UserRequestController::class, 'create'])->name('user-request.create');
-
-Route::post('/request-user', [UserRequestController::class, 'store'])->name('user-request.store');
-
+Route::get('/user-request/response', [UserRequestController::class, 'index'])->name('user-requests.index');
+Route::post('/request-store', [UserRequestController::class, 'store'])->name('user-request.store');
+Route::get('/user-request/response', function () {    return view('request.index');
+});
 // Route::namespace('moodle')->group(function () {
 //     Route::get('/users', [UsersController::class, 'index'])->name('users-list');
 //     Route::get('/enrolled-users', [UsersController::class, 'enrolled'])->name('enrolled-users-list');

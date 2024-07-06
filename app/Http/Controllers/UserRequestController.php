@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\UserRequestConfirmationEmail;
 use App\Models\Faculty;
 use App\Models\School;
 use App\Models\UserRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class UserRequestController extends Controller
 {
@@ -14,7 +16,7 @@ class UserRequestController extends Controller
      */
     public function index()
     {
-        //
+        return view('request.index');
     }
     
     /**
@@ -31,28 +33,43 @@ class UserRequestController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
+
     {
-        $request->validate([
-            'firstname' => 'required|string',
-            'lastname' => 'required|string',
-            'document' => 'required|numeric',
-            'email' => 'required|email',
-            'phone' => 'required|string',
-            'faculty_id' => 'required|integer',
-            'school_id' => 'required|integer',
+       
+        // $request->validate([
+        //     'firstname' => 'required|string',
+        //     'lastname' => 'required|string',
+        //     'document' => 'required|numeric',
+        //     'email' => 'required|email',
+        //     'phone' => 'required|string',
+        //     'faculty_id' => 'required|integer',
+        //     'school_id' => 'required|integer',
             
-            ]);
+        //     ]);
+           
+
             $userRequest = new UserRequest();
             $userRequest->firstname = $request->input('firstname');
             $userRequest->lastname = $request->input('lastname');
+            $userRequest->username = $request->input('username');
+
             $userRequest->email = $request->input('email');
             $userRequest->phone = $request->input('phone');
-            $userRequest->phone = $request->input('document');
-            $userRequest->faculty_id = $request->input('faculty_id');
-            $userRequest->school_id = $request->input('school_id');
+            $userRequest->document = $request->input('document');
+            $userRequest->faculty_id = $request->input('faculty');
+            $userRequest->school_id = $request->input('school');
             $userRequest->status=False;
+            
             $userRequest->save();
-            return redirect()->route('userrequest.create')->with('success', 'Request sent successfully');
+            //$userRequest->school->coordinator_email='';
+            
+            // // Send email notification
+             Mail::to()->send(new UserRequestConfirmationEmail($userRequest));
+        
+            return redirect()->route('user-requests.index')->with('success', 'Solicitud de usuario creada correctamente.');
+        
+            
+            // return redirect()->route('userrequest.create')->with('success', 'Request sent successfully');
 
     }
 

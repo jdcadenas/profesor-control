@@ -52,63 +52,8 @@
 
                                 <div class="card-body">
 
-                                    <form method="POST" action="{{ route('user-request.store') }}">
-                                        @csrf
-
-                                        <div class="form-group">
-                                            <label for="faculty">Facultad:</label>
-                                            <select class="form-control" id="faculty" name="faculty">
-                                                <option value="">Seleccione</option>
-                                                @foreach ($faculties as $faculty)
-                                                    <option value="{{ $faculty->id }}">{{ $faculty->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="school">Escuela:</label>
-                                            <select class="form-control" id="school" name="school" required
-                                                disabled>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="document">Documento:</label>
-                                            <input type="text" class="form-control" id="document" name="document"
-                                                required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="firstname">Nombre:</label>
-                                            <input type="text" class="form-control" id="firsname" name="firstname"
-                                                required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="lastname">Apellido:</label>
-                                            <input type="text" class="form-control" id="lastname" name="lastname"
-                                                required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="username">Usuario:</label>
-                                            <input type="text" class="form-control" id="username" name="username"
-                                                required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="email">Correo electrónico:</label>
-                                            <input type="email" class="form-control" id="email" name="email"
-                                                required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="phone">Teléfono:</label>
-                                            <input type="text" class="form-control" id="phone" name="phone"
-                                                required>
-                                        </div>
-
-                                        <button type="submit" class="btn btn-primary">Enviar solicitud</button>
-
-
-                                    </form>
-
+                                    <h1> Solicitud enviada al coordinador, espere por aprobación</h1>
+                                    <a href="/profesor-control/">regresar</a>
                                 </div>
                             </div>
 

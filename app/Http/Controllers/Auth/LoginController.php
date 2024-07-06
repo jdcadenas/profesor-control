@@ -30,6 +30,7 @@ class LoginController extends Controller
         ]);
         //revisar si está registrado en moodle segun su 
         $userData = $this->UserService->isUserRegistered($validatedData['email']);
+        
         $user =collect((object) $userData['data']['users'][0]);
         
         if ($user->isNotEmpty()) {
